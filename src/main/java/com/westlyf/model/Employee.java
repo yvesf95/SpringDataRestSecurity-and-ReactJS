@@ -1,6 +1,8 @@
 package com.westlyf.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -15,14 +17,8 @@ public class Employee {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column(name = "FIRST_NAME", length = 30, nullable = false)
     private String firstName;
-
-    @Column(name = "LAST_NAME", length = 30, nullable = false)
     private String lastName;
-
-    @Column(name = "DESCRIPTION", length = 100, nullable = false)
     private String description;
 
     public Employee() {

@@ -1,53 +1,67 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { Button, DropdownButton, FormGroup, FormControl, InputGroup, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
-export default class Nav extends React.Component{
+export default class MyNavbar extends React.Component{
 
     constructor(){
         super();
-        this.state = {
-            collapsed: true
-        };
+        this.handleToggle = this.handleToggle.bind(this);
     }
 
-    collapseNav(){
-        const collapsed = !this.state.collapsed;
-        this.setState({collapsed});
+    handleToggle(e) {
+        e.preventDefault();
+        this.props.toggleSidebar();
     }
 
     render(){
-        const collapsedClass = this.state.collapsed ? "collapse" : "";
-        const navClass = this.props.location.pathname === "/login" ? "navbar-static-top" : "navbar-fixed-top";
-
-        return (
-            <nav className={"navbar navbar-default " + navClass}>
-                <div className="container-fluid">
-                    <div className="navbar-header">
-                        <button type="button" className="navbar-toggle" onClick={this.collapseNav.bind(this)}>
-                            <span className="icon-bar"/>
-                            <span className="icon-bar"/>
-                            <span className="icon-bar"/>
-                        </button>
-                        <a href="#" className="navbar-brand">Spring + ReactJS</a>
-                    </div>
-                    <div className={"navbar-collapse " + collapsedClass} id="myNavbar">
-                        <ul className="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="#">
-                                    <span className="glyphicon glyphicon-envelope"/> 
-                                    <span className="badge">3</span>
-                                </a>
-                            </li>
-                            <li><a href="#"><span className="glyphicon glyphicon-user"/> My Profile</a></li>
-                            <li>
-                                <Link to="/login" activeClassName="active">
-                                    <span className="glyphicon glyphicon-off"/> Logout
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        )
+        return(
+            <Navbar collapseOnSelect inverse fixedTop fluid>
+                <Navbar.Header>
+                    <Navbar.Brand>
+                        <a href="#" onClick={this.handleToggle} 
+                           style={{'padding': '15px 20px'}}>
+                            <i className="fa fa-bars icon" aria-hidden="true"/>
+                        </a>
+                    </Navbar.Brand>
+                    <Navbar.Brand>
+                        <Link to="/" style={{marginLeft: '0'}}>
+                            <span className="glyphicon glyphicon-globe"/> Globe Auto Supply
+                        </Link>
+                    </Navbar.Brand>
+                    <Navbar.Toggle/>
+                </Navbar.Header>
+                <Navbar.Collapse>
+                    <Navbar.Form pullLeft>
+                        <FormGroup>
+                            <InputGroup>
+                                <DropdownButton componentClass={InputGroup.Button} 
+                                                title="All" id="basic-nav-dropdown">
+                                    <MenuItem key="1">Item</MenuItem>
+                                </DropdownButton>
+                                <FormControl type="text" placeholder="Search"/>
+                                <InputGroup.Button>
+                                    <Button bsStyle="primary"><span className="glyphicon glyphicon-search"/></Button>
+                                </InputGroup.Button>
+                            </InputGroup>
+                        </FormGroup>
+                    </Navbar.Form>
+                    <Nav pullRight>
+                        <NavItem eventKey={1} href="#">
+                            <span className="glyphicon glyphicon-envelope"/>
+                            <span className="badge">3</span>
+                        </NavItem>
+                        <NavDropdown eventKey={2} title="My Profile" id="basic-nav-dropdown">
+                            <LinkContainer to="/login">
+                                <MenuItem eventKey={2.1}>
+                                        <span className="glyphicon glyphicon-off"/> Logout
+                                </MenuItem>
+                            </LinkContainer>
+                        </NavDropdown>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
+        );
     }
 }

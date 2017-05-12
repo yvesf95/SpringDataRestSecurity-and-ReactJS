@@ -1,20 +1,27 @@
 #wrapper{
-    padding-left: 60px;
-    font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding-left: 55px;
+    font-family: "Segoe UI", serif;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
-
-/* left sidebar */
-#sidebar-wrapper-left{
+/* contents (dashboard, home, entity, etc. )*/
+#content-wrapper{
+    padding-top: 52px;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+/* sidebar */
+#sidebar-wrapper{
     z-index: 1000;
     position: fixed;
     height: 100%;
-    width: 60px;
-    left: 250px;
-    margin-left: -250px;
+    width: 55px;
+    left: 240px;
+    padding-top: 60px;
+    margin-left: -240px;
     overflow-y: auto;
     background: #204056;
     color: #C5CAE9;
@@ -23,37 +30,9 @@
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
-
-/* toggle-left (moves main content 250px to the right)*/
-#wrapper.toggle-left{
-    padding-left: 250px;
-}
-
-/* toggle-left (opens left sidebar)*/
-#wrapper.toggle-left #sidebar-wrapper-left{
-    width: 250px;
-}
-
-/* show text */
-#wrapper.toggle-left #sidebar-wrapper-left .sidebar-nav li{
-    text-indent: 25px;
-    word-spacing: normal;
-    white-space: nowrap;
-}
-
-#wrapper.toggle-left #sidebar-wrapper-left .sidebar-nav li .sidebar-toggle{
-    text-indent: 10px;
-}
-
-.sidebar-nav{
-    padding-left: 0;
-    list-style: none;
-}
-
 /* hide text */
-.sidebar-nav li{
-    line-height: 50px;
-    text-indent: 10px;
+#sidebar-wrapper li{
+    text-indent: 1px;
     word-spacing: 20px;
     white-space: nowrap;
     overflow: hidden;
@@ -63,122 +42,100 @@
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
-
-.sidebar-nav li a{
-    display: block;
-    text-decoration: none;
+/* sidebar items */
+#sidebar-wrapper li a{
     color: #61869b;
     font-size: 18px;
 }
-
-.sidebar-nav li a:hover,
-.sidebar-nav li a:focus{
+/* hover on item */
+#sidebar-wrapper li a:hover,
+#sidebar-wrapper li a:focus{
     color: #ffffff;
     background: #2e6da4;
 }
 
-.sidebar-header{
-    padding-top: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
+/* toggled (moves main content 250px to the right)*/
+#wrapper.toggled{
+    padding-left: 240px;
+}
+/* toggled (opens sidebar)*/
+#wrapper.toggled #sidebar-wrapper{
+    width: 240px;
+}
+/* show text */
+#wrapper.toggled #sidebar-wrapper li{
+    text-indent: 20px;
+    word-spacing: normal;
+    white-space: nowrap;
 }
 
-.sidebar-toggle{
-    text-indent: 10px;
-}
-
-/* contents (dashboard, home, customer, etc. )*/
-#content-wrapper{
-    padding-top: 50px;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
-/* right sidebar */
-#sidebar-wrapper-right{
-    z-index: 1000;
-    position: fixed;
-    /*height: 100%;*/
-    top: 50px;
-    bottom: 0;
-    width: 0;
-    right: 350px;
-    margin-right: -350px;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    background: #388E3C;
-    color: #ffffff;
-    opacity: 0;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
-/* toggle-right (moves main content 400px to the left)*/
-#content-wrapper.toggle-right{
-    padding-right: 350px;
-}
-
-/* toggle-right (opens right sidebar)*/
-#content-wrapper.toggle-right #sidebar-wrapper-right{
-    width: 350px;
-    padding: 15px;
-    opacity: 1;
+@media screen and (max-width: 768px){
+    #wrapper{
+        padding-left: 0;
+    }
+    #sidebar-wrapper{
+        width: 0;
+    }
+    #content-wrapper{
+        position: absolute;
+    }
 }
 
 .login-container{
-    height: 100vh;
+    min-height: 100vh;
+    padding-top: 40px;
+    padding-bottom: 40px;
     background: #00796B;
     font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #ffffff;
 }
 
 .login-card{
-    margin-top: 100px;
+    margin: 0 auto;
     background: #01579B;
-    width: 364px;
-    height: 400px;
+    max-width: 330px;
+    /*height: 400px;*/
     border-radius: 5px;
     box-shadow: 0 0 10px #212121;
 }
 
 .login-form{
-    padding: 40px;
+    padding: 15px;
+}
+
+.modal-container .modal, .modal-container .modal-backdrop{
+    top: 52px;
+    position: absolute;
 }
 
 /* bootstrap */
-.navbar{
-    margin-bottom: 0;
-    /*background: #EEEEEE;*/
-}
-
 .navbar-fixed-top{
-    left: 60px;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    border-width: 0;
 }
-
-#wrapper.toggle-left .navbar{
-    left: 250px;
+.navbar .navbar-header .navbar-brand:hover,
+.navbar .navbar-header .navbar-brand:focus{
+    color: #ffffff;
+    background-color: #2e6da4;
 }
-
-.navbar-default, .navbar-inverse{
-    border: hidden;
-}
-
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus,
+.navbar-default .navbar-nav > .open > a:focus,
 .navbar-inverse .navbar-nav li a:hover,
 .navbar-default .navbar-nav li a:hover,
 .navbar-inverse .navbar-nav li a:focus,
 .navbar-default .navbar-nav li a:focus{
     color: #ffffff;
-    background: #2e6da4;
+    background-color: #2e6da4;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
+}
+.pagination{
+    font-family: Arial, serif;
+    margin-top: 0;
+    float: right;
 }
